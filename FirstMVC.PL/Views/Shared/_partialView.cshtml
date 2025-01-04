@@ -1,0 +1,13 @@
+﻿    @model int
+   
+<a asp-action="Details" asp-controller="Department" asp-route-id="@Model" style="color: #e8eded; text-decoration: none; padding: 8px 16px; border-radius: 5px; background-color: #34eb3a;">
+    <i class="fas fa-info-circle"></i> Details
+</a> |
+
+<a asp-action="Edit" asp-controller="Department" asp-route-id="@Model" style="color: #e8eded; text-decoration: none; padding: 8px 16px; border-radius: 5px; background-color: #079af5;">
+    <i class="fas fa-edit"></i> Update
+</a> |
+
+<a asp-action="Delete" asp-controller="Department" asp-route-id="@Model" style="color: #e8eded; text-decoration: none; padding: 8px 16px; border-radius: 5px; background-color: #a60d1a;">
+    <i class="fas fa-trash-alt"></i> Delete
+</a>
