@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FirstMVC.BLL.Repositories
 {
-    class EmployeeRepository : GenericRepository<Employee>, IEmployeeRepository
+   public class EmployeeRepository : GenericRepository<Employee>, IEmployeeRepository
     {
 
         public EmployeeRepository(ApplicationDbContext dbContext) : base(dbContext)

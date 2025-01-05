@@ -1,0 +1,73 @@
+﻿@using FirstMVC.DAL.Model
+@model Employee
+
+
+<!-- Name -->
+<div style="margin-bottom: 15px;">
+    <label for="Name" style="display: block; font-weight: bold;">Name:</label>
+    <input type="text" asp-for="Name" class="form-control" style="width: 100%; padding: 8px;" />
+    <span asp-validation-for="Name" style="color: red;"></span>
+</div>
+<!-- Address -->
+<div style="margin-bottom: 15px;">
+    <label for="Name" style="display: block; font-weight: bold;">Address:</label>
+    <input type="text" asp-for="Address" class="form-control" style="width: 100%; padding: 8px;" />
+    <span asp-validation-for="Address" style="color: red;"></span>
+</div>
+
+<!-- Age -->
+<div style="margin-bottom: 15px;">
+    <label for="Age" style="display: block; font-weight: bold;">Age:</label>
+    <input type="number" asp-for="Age" class="form-control" style="width: 100%; padding: 8px;" />
+    <span asp-validation-for="Age" style="color: red;"></span>
+</div>
+
+<!-- Gender -->
+<div style="margin-bottom: 15px;">
+    <label for="Gender" style="display: block; font-weight: bold;">Gender:</label>
+    <select asp-for="Gender" class="form-control" style="width: 100%; padding: 8px;">
+        <option value="">-- Select Gender --</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+    </select>
+    <span asp-validation-for="Gender" style="color: red;"></span>
+</div>
+
+<!-- Employee Type -->
+<div style="margin-bottom: 15px;">
+    <label for="Gender" style="display: block; font-weight: bold;">Employee Type:</label>
+    <select asp-for="EmpType" class="form-control" style="width: 100%; padding: 8px;">
+        <option value="">-- Select Employee Type --</option>
+        <option value="PartTime">Part Time</option>
+        <option value="FullTime">Full Time</option>
+    </select>
+    <span asp-validation-for="EmpType" style="color: red;"></span>
+</div>
+
+<!-- Email -->
+<div style="margin-bottom: 15px;">
+    <label for="Email" style="display: block; font-weight: bold;">Email:</label>
+    <input type="email" asp-for="Email" class="form-control" style="width: 100%; padding: 8px;" />
+    <span asp-validation-for="Email" style="color: red;"></span>
+</div>
+
+<!-- Phone -->
+<div style="margin-bottom: 15px;">
+    <label for="PhoneNumber" style="display: block; font-weight: bold;">Phone Number:</label>
+    <input type="text" asp-for="PhoneNumber" class="form-control" style="width: 100%; padding: 8px;" />
+    <span asp-validation-for="PhoneNumber" style="color: red;"></span>
+</div>
+
+<!-- Hiring Date -->
+<div style="margin-bottom: 15px;">
+    <label for="HiringDate" style="display: block; font-weight: bold;">Hiring Date:</label>
+    <input type="date" asp-for="HiringDate" class="form-control" style="width: 100%; padding: 8px;" />
+    <span asp-validation-for="HiringDate" style="color: red;"></span>
+</div>
+
+<!-- Salary -->
+<div style="margin-bottom: 15px;">
+    <label for="Salary" style="display: block; font-weight: bold;">Salary:</label>
+    <input type="number" asp-for="Salary" class="form-control" style="width: 100%; padding: 8px;" />
+    <span asp-validation-for="Salary" style="color: red;"></span>
+</div>

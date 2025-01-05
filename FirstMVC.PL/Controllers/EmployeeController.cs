@@ -4,13 +4,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FirstMVC.PL.Controllers
 {
-    public class DepartmentController : Controller
+    public class EmployeeController : Controller
     {
-        private readonly IDepartmentRepository _departmentRepository;
+        private readonly IEmployeeRepository _EmployeeRepository;
 
-        public DepartmentController(IDepartmentRepository departmentRepository)
+        public EmployeeController(IEmployeeRepository employeeRepository)
         {
-            _departmentRepository = departmentRepository;
+            _EmployeeRepository = employeeRepository;
         }
 
         public IActionResult Index(string searchQuery)
@@ -19,15 +19,15 @@ namespace FirstMVC.PL.Controllers
             if (string.IsNullOrEmpty(searchQuery))
 
             {
-                var department = _departmentRepository.GetAll();
-                return View(department);
+                var employee = _EmployeeRepository.GetAll();
+                return View(employee);
             }
             else
             {
-                var department = _departmentRepository.search(searchQuery.ToLower());
+                var employee = _EmployeeRepository.search(searchQuery.ToLower());
 
 
-                return View(department);
+                return View(employee);
             }
 
 
@@ -42,13 +42,13 @@ namespace FirstMVC.PL.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Department department)
+        public IActionResult Create(Employee employee)
         {
 
             if (ModelState.IsValid)
             {
 
-                var count = _departmentRepository.Add(department);
+                var count = _EmployeeRepository.Add(employee);
                 if (count > 0)
                 {
 
@@ -59,7 +59,7 @@ namespace FirstMVC.PL.Controllers
 
 
             }
-            return View(department);
+            return View(employee);
 
         }
 
@@ -68,11 +68,11 @@ namespace FirstMVC.PL.Controllers
             if (!id.HasValue)
                 return BadRequest();
 
-            var department = _departmentRepository.GetById(id.Value);
+            var employee = _EmployeeRepository.GetById(id.Value);
 
-            if (department == null)
+            if (employee == null)
                 return NotFound();
-            return View(viewName, department);
+            return View(viewName, employee);
 
 
         }
@@ -87,16 +87,16 @@ namespace FirstMVC.PL.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Department department)
+        public IActionResult Edit(Employee employee)
 
 
         {
 
             if (!ModelState.IsValid)
 
-                return View(department);
+                return View(employee);
 
-            _departmentRepository.Update(department);
+            _EmployeeRepository.Update(employee);
 
             return RedirectToAction(nameof(Index));
         }
@@ -111,15 +111,13 @@ namespace FirstMVC.PL.Controllers
 
         [HttpPost]
 
-        public IActionResult Delete(Department department)
+        public IActionResult Delete(Employee employee)
         {
-            _departmentRepository.Delete(department);
+            _EmployeeRepository.Delete(employee);
 
             return RedirectToAction(nameof(Index));
 
         }
-
-
 
     }
 }

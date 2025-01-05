@@ -36,6 +36,7 @@ namespace FirstMVC.PL
 
             services.AddScoped<IDepartmentRepository, DepartmentRepository>();
 
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 
         }
 

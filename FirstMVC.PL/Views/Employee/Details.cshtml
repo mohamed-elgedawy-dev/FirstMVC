@@ -1,0 +1,15 @@
+﻿@using FirstMVC.DAL.Model
+@model Employee
+
+@{
+    ViewData["Title"] = " Employee  Details";
+}
+
+<h1>Details</h1>
+
+<partial name="PartialViews/DeleteDetailsView" />
+
+<a asp-action="Edit" class="btn btn-primary" asp-route-id="@Model.Id">Edit</a>
+
+<a asp-action="Index" class="btn btn-primary" asp-route-id="@Model.Id">Back to list</a>
+
