@@ -1,16 +1,26 @@
-﻿using FirstMVC.BLL.Interfaces;
+﻿using AutoMapper;
+using FirstMVC.BLL.Interfaces;
 using FirstMVC.DAL.Model;
+using FirstMVC.PL.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace FirstMVC.PL.Controllers
 {
     public class EmployeeController : Controller
     {
         private readonly IEmployeeRepository _EmployeeRepository;
+        private readonly IDepartmentRepository _departmentRepository;
+        private readonly IMapper _mapper;
 
-        public EmployeeController(IEmployeeRepository employeeRepository)
+        public EmployeeController(IEmployeeRepository employeeRepository,
+            IDepartmentRepository departmentRepository,
+            IMapper mapper)
         {
             _EmployeeRepository = employeeRepository;
+            _departmentRepository = departmentRepository;
+            _mapper = mapper;
         }
 
         public IActionResult Index(string searchQuery)
@@ -19,15 +29,18 @@ namespace FirstMVC.PL.Controllers
             if (string.IsNullOrEmpty(searchQuery))
 
             {
+
+
                 var employee = _EmployeeRepository.GetAll();
-                return View(employee);
+                var MappedEmployee=_mapper.Map<IEnumerable<Employee>,IEnumerable<EmployeeViewModel>>(employee);
+                return View(MappedEmployee);
             }
             else
             {
                 var employee = _EmployeeRepository.search(searchQuery.ToLower());
 
-
-                return View(employee);
+                var MappedEmployee = _mapper.Map < IEnumerable<Employee>, IEnumerable< EmployeeViewModel >> (employee);
+                return View(MappedEmployee);
             }
 
 
@@ -36,19 +49,21 @@ namespace FirstMVC.PL.Controllers
 
         public IActionResult Create()
         {
+            
             return View();
 
 
         }
 
         [HttpPost]
-        public IActionResult Create(Employee employee)
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(EmployeeViewModel employee)
         {
 
             if (ModelState.IsValid)
             {
-
-                var count = _EmployeeRepository.Add(employee);
+              var MappedEmployee=  _mapper.Map<EmployeeViewModel, Employee>(employee);
+                var count = _EmployeeRepository.Add(MappedEmployee);
                 if (count > 0)
                 {
 
@@ -72,7 +87,8 @@ namespace FirstMVC.PL.Controllers
 
             if (employee == null)
                 return NotFound();
-            return View(viewName, employee);
+            var MappedEmployee = _mapper.Map <Employee,  EmployeeViewModel > (employee);
+            return View(viewName, MappedEmployee);
 
 
         }
@@ -87,7 +103,7 @@ namespace FirstMVC.PL.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Employee employee)
+        public IActionResult Edit(EmployeeViewModel employee)
 
 
         {
@@ -95,8 +111,8 @@ namespace FirstMVC.PL.Controllers
             if (!ModelState.IsValid)
 
                 return View(employee);
-
-            _EmployeeRepository.Update(employee);
+            var MappedEmployee = _mapper.Map <EmployeeViewModel,Employee> (employee);
+            _EmployeeRepository.Update(MappedEmployee);
 
             return RedirectToAction(nameof(Index));
         }
@@ -111,9 +127,10 @@ namespace FirstMVC.PL.Controllers
 
         [HttpPost]
 
-        public IActionResult Delete(Employee employee)
+        public IActionResult Delete(EmployeeViewModel employee)
         {
-            _EmployeeRepository.Delete(employee);
+            var MappedEmployee = _mapper.Map <EmployeeViewModel,Employee> (employee);
+            _EmployeeRepository.Delete(MappedEmployee);
 
             return RedirectToAction(nameof(Index));
 

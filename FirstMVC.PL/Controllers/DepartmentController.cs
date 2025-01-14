@@ -42,6 +42,7 @@ namespace FirstMVC.PL.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Create(Department department)
         {
 

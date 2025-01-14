@@ -1,6 +1,7 @@
 using FirstMVC.BLL.Interfaces;
 using FirstMVC.BLL.Repositories;
 using FirstMVC.DAL.Data;
+using FirstMVC.PL.MappingProfiles;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -37,6 +38,7 @@ namespace FirstMVC.PL
             services.AddScoped<IDepartmentRepository, DepartmentRepository>();
 
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            services.AddAutoMapper(m=>m.AddProfile(new EmployeeProfile ()));
 
         }
 

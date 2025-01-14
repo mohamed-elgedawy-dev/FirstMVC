@@ -1,41 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using FirstMVC.DAL.Model;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
+using System;
 
-namespace FirstMVC.DAL.Model
+namespace FirstMVC.PL.ViewModels
 {
-
-    public enum Gender
-    {
-        [EnumMember(Value = "Male")]
-        Male = 1,
-
-
-        [EnumMember(Value = "Female")]
-        Female = 2
-
-    }
-    public enum EmpType
+    public class EmployeeViewModel:ModelBase
     {
 
-        FullTime = 1, PartTime = 2
-    }
-
-
-    public class Employee:ModelBase
-    {
-
-
-
-        [Required]
-        [MaxLength(50)]
-      
+        [Required(ErrorMessage ="Name is Required")]
+        [MaxLength(50 , ErrorMessage ="max is 50")]
+        [MinLength(5, ErrorMessage = "min is 5")]
         public string Name { get; set; }
-
+        [Range(22,40 ,ErrorMessage ="from 22 to 40")]
         public int? Age { get; set; }
 
         [Required]
@@ -54,7 +30,7 @@ namespace FirstMVC.DAL.Model
 
 
         [Phone]
-       
+
         public string PhoneNumber { get; set; }
 
         public DateTime HiringDate { get; set; }
@@ -71,11 +47,6 @@ namespace FirstMVC.DAL.Model
         public int? DepartmentId { get; set; }
 
         public Department? Department { get; set; }
-      
-
-
-
-
 
     }
 }

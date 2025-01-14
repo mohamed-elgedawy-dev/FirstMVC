@@ -17,6 +17,8 @@ namespace FirstMVC.DAL.Data.Configuration
             builder.Property(d => d.Name).IsRequired().HasMaxLength(50);
             builder.Property(d => d.Code).IsRequired().HasMaxLength(50);
             
+            builder.HasMany(d => d.Employees).WithOne(e => e.Department).HasForeignKey(e => e.DepartmentId).
+                OnDelete(DeleteBehavior.SetNull);
         }
     }
 }

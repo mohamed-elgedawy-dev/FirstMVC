@@ -18,7 +18,10 @@ namespace FirstMVC.DAL.Model
 
         public DateTime DateOfCreation { get; set; }
 
-        
+
+        public ICollection<Employee> Employees { get; set; } = new HashSet<Employee>();
+
+
 
 
     }

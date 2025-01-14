@@ -51,9 +51,19 @@ namespace FirstMVC.BLL.Repositories
         }
 
         public IEnumerable<T> GetAll()
-         => _dbContext.Set<T>().AsNoTracking().ToList();
+        {
+            if (typeof(T) ==typeof( Employee))
+            {
+              return (IEnumerable<T>) _dbContext.Employees.Include( e=>e.Department).ToList();
 
 
+            }
+
+
+
+         return   _dbContext.Set<T>().ToList();
+
+        }
         public T GetById(int id)
           => _dbContext.Find<T>(id);
     }
