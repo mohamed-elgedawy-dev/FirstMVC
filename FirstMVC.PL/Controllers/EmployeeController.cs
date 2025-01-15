@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using FirstMVC.BLL.Interfaces;
 using FirstMVC.DAL.Model;
+using FirstMVC.PL.Helpers;
 using FirstMVC.PL.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection.Metadata;
 
 namespace FirstMVC.PL.Controllers
 {
@@ -57,15 +59,18 @@ namespace FirstMVC.PL.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(EmployeeViewModel employee)
+        public IActionResult Create(EmployeeViewModel employeeVm)
         {
+            employeeVm.ImageName = DocumentSettings.UploadFile(employeeVm.Image, "Images");
 
             if (ModelState.IsValid)
             {
-              var MappedEmployee=  _mapper.Map<EmployeeViewModel, Employee>(employee);
+              var MappedEmployee=  _mapper.Map<EmployeeViewModel, Employee>(employeeVm);
+                 
                 var count = _EmployeeRepository.Add(MappedEmployee);
                 if (count > 0)
                 {
+                  
 
                     return RedirectToAction(nameof(Index));
 
@@ -74,7 +79,7 @@ namespace FirstMVC.PL.Controllers
 
 
             }
-            return View(employee);
+            return View(employeeVm);
 
         }
 
@@ -107,12 +112,23 @@ namespace FirstMVC.PL.Controllers
 
 
         {
+            if (employee.Image != null)
+            {
+                
+                if (!string.IsNullOrEmpty(employee.ImageName))
+                {
+                    DocumentSettings.DeleteFile(employee.ImageName, "Images");
+                }
 
+                
+                employee.ImageName = DocumentSettings.UploadFile(employee.Image, "Images");
+            }
             if (!ModelState.IsValid)
 
                 return View(employee);
             var MappedEmployee = _mapper.Map <EmployeeViewModel,Employee> (employee);
-            _EmployeeRepository.Update(MappedEmployee);
+          _EmployeeRepository.Update(MappedEmployee);
+      
 
             return RedirectToAction(nameof(Index));
         }
@@ -130,7 +146,12 @@ namespace FirstMVC.PL.Controllers
         public IActionResult Delete(EmployeeViewModel employee)
         {
             var MappedEmployee = _mapper.Map <EmployeeViewModel,Employee> (employee);
-            _EmployeeRepository.Delete(MappedEmployee);
+        var count= _EmployeeRepository.Delete(MappedEmployee);
+
+            if (count > 0)
+            {
+                DocumentSettings.DeleteFile(employee.ImageName, "Images");
+            }
 
             return RedirectToAction(nameof(Index));
 

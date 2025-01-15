@@ -9,7 +9,13 @@
       var  departments = new SelectList(_departmentRepo.GetAll(), "Id", "Name");
     
 }
-
+<tr>
+    <td><strong>Image</strong></td>
+    <td style="padding: 15px; text-align: center; border: 1px solid #ddd; color: white;">
+        <img src="~/files/Images/@Model.ImageName" style="max-width: 20%; height: auto; border-radius: 8px;" />
+    </td>
+</tr>
+<tr>
 
 <!-- Name -->
 <div style="margin-bottom: 15px;">
@@ -109,3 +115,9 @@
     <input type="number" asp-for="Salary" class="form-control" style="width: 100%; padding: 8px;" />
     <span asp-validation-for="Salary" style="color: red;"></span>
 </div>
+<div class="form-group">
+    <label class="col-form-label" asp-for="Image" ></label>
+    <input class="form-control" asp-for="Image" />
+
+</div>
+

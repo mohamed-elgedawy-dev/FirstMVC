@@ -25,6 +25,7 @@
         <div class="card-footer text-center">
             <form asp-action="Delete" method="post">
                 <input type="hidden" name="Id" value="@Model.Id" />
+                <input type="hidden"asp-for="ImageName"/>
                 <button type="submit" class="btn btn-danger btn-lg">Yes, Delete</button>
                 <a asp-action="Index" class="btn btn-secondary btn-lg">Cancel</a>
             </form>

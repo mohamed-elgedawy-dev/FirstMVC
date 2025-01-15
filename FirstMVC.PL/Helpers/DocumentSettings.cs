@@ -2,6 +2,7 @@
 using System;
 using System.IO;
 using static System.Net.WebRequestMethods;
+using File = System.IO.File;
 
 namespace FirstMVC.PL.Helpers
 {
@@ -9,7 +10,7 @@ namespace FirstMVC.PL.Helpers
     {
 
 
-        public static string UploadFile(IFormFile file , string folderName)
+        public static string UploadFile(IFormFile file, string folderName)
         {
 
 
@@ -19,10 +20,10 @@ namespace FirstMVC.PL.Helpers
 
             string folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\files", folderName);
 
-            string fileName =  $"{Guid.NewGuid()}{file.FileName}" ;
+            string fileName = $"{Guid.NewGuid()}{file.FileName}";
 
 
-            string filePath=Path.Combine(folderPath, fileName);
+            string filePath = Path.Combine(folderPath, fileName);
 
 
             using var fileStream = new FileStream(filePath, FileMode.Create);
@@ -32,7 +33,15 @@ namespace FirstMVC.PL.Helpers
             return fileName;
         }
 
+        public static void DeleteFile(string fileName, string folderName)
+        {
 
+
+            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\files", folderName, fileName);
+
+            if (File.Exists(filePath))
+                File.Delete(filePath);
+        }
 
     }
 }
