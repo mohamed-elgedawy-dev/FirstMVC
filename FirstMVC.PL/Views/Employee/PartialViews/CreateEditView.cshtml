@@ -12,7 +12,17 @@
 <tr>
     <td><strong>Image</strong></td>
     <td style="padding: 15px; text-align: center; border: 1px solid #ddd; color: white;">
-        <img src="~/files/Images/@Model.ImageName" style="max-width: 20%; height: auto; border-radius: 8px;" />
+     
+        @if (Model != null && !string.IsNullOrEmpty(Model.ImageName))
+        {
+            <img src="~/files/Images/@Model.ImageName" style="max-width: 20%; height: auto; border-radius: 8px;" />
+        }
+        else
+        {
+            <p>No image available</p>
+        }
+
+
     </td>
 </tr>
 <tr>

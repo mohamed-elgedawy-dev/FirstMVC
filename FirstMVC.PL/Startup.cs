@@ -1,10 +1,12 @@
 using FirstMVC.BLL.Interfaces;
 using FirstMVC.BLL.Repositories;
 using FirstMVC.DAL.Data;
+using FirstMVC.DAL2.Model;
 using FirstMVC.PL.MappingProfiles;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -39,8 +41,13 @@ namespace FirstMVC.PL
 
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddAutoMapper(m=>m.AddProfile(new EmployeeProfile ()));
+       
 
-        }
+            services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+
+
+
+		}
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
