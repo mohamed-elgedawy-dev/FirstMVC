@@ -1,9 +1,11 @@
 ﻿using FirstMVC.BLL.Interfaces;
 using FirstMVC.DAL.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FirstMVC.PL.Controllers
 {
+    [Authorize]
     public class DepartmentController : Controller
     {
         private readonly IDepartmentRepository _departmentRepository;

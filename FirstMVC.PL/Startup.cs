@@ -45,6 +45,8 @@ namespace FirstMVC.PL
 
             services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 
+            
+
 
 
 		}
@@ -68,6 +70,7 @@ namespace FirstMVC.PL
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {

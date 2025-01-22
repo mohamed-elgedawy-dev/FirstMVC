@@ -79,7 +79,7 @@ namespace FirstMVC.PL.Controllers
 
 
 
-		#region Sign In
+		#region Log In
 
         public IActionResult LogIn()
         {
@@ -125,6 +125,19 @@ namespace FirstMVC.PL.Controllers
 		#endregion
 
 
+		#region Log Out
+
+        public async Task< IActionResult> LogOut()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction(nameof(SignIn));
+
+
+
+        }
+
+
+		#endregion
 
 	}
 }

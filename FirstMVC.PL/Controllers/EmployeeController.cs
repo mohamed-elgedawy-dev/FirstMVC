@@ -3,6 +3,7 @@ using FirstMVC.BLL.Interfaces;
 using FirstMVC.DAL.Model;
 using FirstMVC.PL.Helpers;
 using FirstMVC.PL.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using System.Reflection.Metadata;
 
 namespace FirstMVC.PL.Controllers
 {
+    [Authorize]
     public class EmployeeController : Controller
     {
         private readonly IEmployeeRepository _EmployeeRepository;

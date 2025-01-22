@@ -19,23 +19,82 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        <li class="nav-item" style="margin-right: 10px;">
+                            <a class="nav-link" style="
+                color: #fff;
+                background-color: #007bff; /* أزرق */
+                border-radius: 5px;
+                padding: 5px 10px;
+                text-decoration: none;
+                transition: background-color 0.3s ease;
+            " onmouseover="this.style.backgroundColor='#0056b3'"
+                               onmouseout="this.style.backgroundColor='#007bff'"
+                               asp-area="" asp-controller="Home" asp-action="Index">
+                                Home
+                            </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        <li class="nav-item" style="margin-right: 10px;">
+                            <a class="nav-link" style="
+                color: #fff;
+                background-color: #17a2b8; /* فيروزي */
+                border-radius: 5px;
+                padding: 5px 10px;
+                text-decoration: none;
+                transition: background-color 0.3s ease;
+            " onmouseover="this.style.backgroundColor='#117a8b'"
+                               onmouseout="this.style.backgroundColor='#17a2b8'"
+                               asp-area="" asp-controller="Home" asp-action="Privacy">
+                                Privacy
+                            </a>
                         </li>
-                            <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Department" asp-action="Index">Department</a>
-                        </li> <li class="nav-item">
-
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Employee" asp-action="Index">Employee</a>
+                        <li class="nav-item" style="margin-right: 10px;">
+                            <a class="nav-link" style="
+                color: #fff;
+                background-color: #28a745; /* أخضر */
+                border-radius: 5px;
+                padding: 5px 10px;
+                text-decoration: none;
+                transition: background-color 0.3s ease;
+            " onmouseover="this.style.backgroundColor='#218838'"
+                               onmouseout="this.style.backgroundColor='#28a745'"
+                               asp-area="" asp-controller="Department" asp-action="Index">
+                                Department
+                            </a>
                         </li>
+                        <li class="nav-item" style="margin-right: 10px;">
+                            <a class="nav-link" style="
+                color: #fff;
+                background-color: #ffc107; /* أصفر */
+                border-radius: 5px;
+                padding: 5px 10px;
+                text-decoration: none;
+                transition: background-color 0.3s ease;
+            " onmouseover="this.style.backgroundColor='#e0a800'"
+                               onmouseout="this.style.backgroundColor='#ffc107'"
+                               asp-area="" asp-controller="Employee" asp-action="Index">
+                                Employee
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- زر Log Out -->
+                    <ul class="navbar-nav">
                         <li class="nav-item">
+                            <a class="nav-link" style="
+                color: #fff;
+                background-color: #dc3545; /* أحمر */
+                border-radius: 5px;
+                padding: 5px 10px;
+                text-decoration: none;
+                transition: background-color 0.3s ease;
+            " onmouseover="this.style.backgroundColor='#c82333'"
+                               onmouseout="this.style.backgroundColor='#dc3545'"
+                               asp-area="" asp-controller="AccountController" asp-action="LogOut">
+                                Log Out
+                            </a>
+                        </li>
                     </ul>
                 </div>
-            </div>
+
         </nav>
     </header>
     <div class="container">
