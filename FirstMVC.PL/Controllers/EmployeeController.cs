@@ -11,7 +11,7 @@ using System.Reflection.Metadata;
 
 namespace FirstMVC.PL.Controllers
 {
-    [Authorize]
+   
     public class EmployeeController : Controller
     {
         private readonly IEmployeeRepository _EmployeeRepository;

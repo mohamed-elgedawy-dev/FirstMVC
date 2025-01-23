@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FirstMVC.PL.Controllers
 {
-    [Authorize]
+    
     public class DepartmentController : Controller
     {
         private readonly IDepartmentRepository _departmentRepository;
