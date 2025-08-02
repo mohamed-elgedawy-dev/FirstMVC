@@ -2,6 +2,7 @@
 using FirstMVC.DAL.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace FirstMVC.PL.Controllers
 {
@@ -22,12 +23,14 @@ namespace FirstMVC.PL.Controllers
 
             {
                 var department = _departmentRepository.GetAll();
+                System.Diagnostics.Debug.WriteLine(department);
+                Console.WriteLine(department);
                 return View(department);
             }
             else
             {
                 var department = _departmentRepository.search(searchQuery.ToLower());
-
+                System.Diagnostics.Debug.WriteLine(department);
 
                 return View(department);
             }
